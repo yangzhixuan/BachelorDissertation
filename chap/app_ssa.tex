@@ -1,0 +1,128 @@
+\chapter{内存SSA算法伪代码}
+
+本附录为内存SSA转换步骤的算法伪代码，算法说明请参考第\ref{sec:ssa}节。
+
+\begin{figure}[htbp]
+\centering
+\begin{tabular}{c}
+\begin{lstlisting}
+// Step1. place all necessary PHINodes for memory objects
+for(each BasicBlock bb in F) {
+
+  for(each Instruction inst in bb) {
+    if(inst is a StoreInst) {
+      // If a StoreInst modify a memory object aliasing our 
+      // 'resources', insert a PHINode at the dominance frontier.
+      Value* ptr = store->getPointerOperand();
+
+      // Get the pointed variable equivalent class (a DSNode )
+      //   from the DSA analysis result
+      DSNode *n = dsgraph->getNodeForValue(ptr).getNode(); 
+
+      for(each DominanceFrontier frontier of bb) {
+          Create PhiNode for n at frontier;
+      }
+
+    } else if(inst is an AllocInst) {
+      // AllocaInst is treated as storing an 'unspecific'
+      //   value to the memory.
+      Value *ptr = alloca;
+      DSNode *n = dsgraph->getNodeForValue(ptr).getNode();
+
+      for(each DominanceFrontier frontier of bb) {
+          Create PhiNode for n at frontier;
+      }
+    } else if(inst is a CallInst){
+      ...
+    }
+  }
+}
+\end{lstlisting}
+\end{tabular}
+\caption{$\phi$放置第一步：对每一条修改变量的指令放置一个$\phi$指令在支配边界处。}\label{alg:phi1}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tabular}{c}
+\begin{lstlisting}
+// Add PHINode for PHINode inserted earlier 
+//   until the PHINode set is closed...
+queue<BasicBlock*> bbWithNewPHI;
+for(each BasicBlock 'bb' with a PHINode) {
+  bbWithNewPHI.push(bb);
+}
+while(!bbWithNewPHI.empty()) {
+  BasicBlock* bb = bbWithNewPHI.front();
+  bbWithNewPHI.pop();
+
+  for(each PHINode p of bb) {
+    DSNode *n = Coresponding DSNode of p;
+    for(each DomianceFrontier frontier of bb) {
+      if(frontier does not have a PHINode for n) {
+        Create PhiNode for n at frontier;
+        if(frontier is not in bbWithPHI) {
+          bbWithNewPHI.push(frontier);
+        }
+      }
+    }
+  }
+}
+\end{lstlisting}
+\end{tabular}
+\caption{$\phi$放置第二步：求$\phi$结点的闭包}\label{alg:phi2}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\begin{tabular}{c}
+\begin{lstlisting}
+
+void buildSSARenaming(map<DSNode *, Instruction *> &lastDef,
+     BasicBlock *bb) {
+  // Step1. scan instructions in 'bb', adding new definitions 
+  //   and linking usage to its last definition.
+  lastDefBackup = lastDef;
+  for(each PHINode p of bb) {
+    DSNode *n = corresponding variable equivalent class of p
+    lastDef[n] = p;
+  }
+  for(each Instruction inst in bb) {
+    // Alloca/StoreInst use a value and define a new version of it.
+    // LoadInst only use a value.
+    if(inst is a StoreInst) {
+      Value *ptr = inst->getPointerOperand();
+      DSNode *n = dsgraph->getNodeForValue(ptr).getNode();
+      Instruction *def = lastDef[n];
+      memSSAUsers[def].insert(store);
+      // Defines a new
+      lastDef[n] = inst;
+    } else if(inst is a LoadInst) {
+      Value *ptr = inst->getPointerOperand();
+      DSNode *n = dsgraph->getNodeForValue(ptr).getNode();
+      // Reads an old
+      Instruction *def = lastDef[n];
+      memSSAUsers[def].insert(inst);
+    } else { ... /* deal with other kinds of instructions */}
+  // Step2. update PHINodes for successors blocks in the CFG.
+  for(BasicBlock *succ : successors(bb)) {
+      for(each PHINode p of succ) {
+        DSNode *n = corresponding DSNode;
+        if(lastDef[n] exists) {
+          Instruction *def = lastDef[n];
+          memSSAUsers[def].insert(p);
+        }
+      }
+  }
+  // Step3. Recursively process immediate dominated BasicBlocks.
+  for(each child of bb in DominanceTree)) {
+    buildSSARenaming(lastDef, child->getBlock());
+  }
+  // Step4. Restore definitions added in this BasicBlock.
+  lastDef = lastDefBackup;
+}
+\end{lstlisting}
+\end{tabular}
+\caption{$\phi$放置第三步：解析定义使用关系}\label{alg:phi3}
+\end{figure}

@@ -1,0 +1,139 @@
+\chapter{上下文、流、堆敏感指针分析算法CFHS}\label{algorithm}
+
+本章介绍我们设计的上下文敏感、流敏感、堆上下文敏感基于合一的指针分析算法，简便起见，我们称之为CFHS算法（ Context-Flow-Heap-Sensitive Algorithm）。CFHS算法是一个分阶段的算法，其大致流程为：
+
+\begin{enumerate}[topsep=1em, itemsep=1em]
+\item 其首先使用其他任意指针分析（称之为“辅助分析”）对程序进行快速而粗略的指针分析。
+\item 根据辅助分析的结果将程序转换为完全静态单赋值形式，得到“定义－使用图” （ Def-Use Graph, DUG）。
+\item 根据辅助分析的结果，识别出函数调用图。并且对函数调用图中的每一个强连通分量（Strong Connected Component, SCC ），将每个函数的DUG拼接合并为SCC级别的超级DUG。
+\item 对于每个SCC的DUG，进行稀疏流敏感指针分析，并对每个函数生成“归纳”。
+\item 在SCC的无环调用图中，后序地处理每个SCC，对每个调用指令，将被调用函数的归纳应用到调用指令处，并更新SCC的流敏感分析结果及摘要。
+\end{enumerate}
+
+在本章接下来的各节中，我们详细说明算法的每一个步骤，并给出伪代码及实例说明。
+
+\section{内存SSA变换}\label{sec:ssa}
+所谓静态单赋值形式（SSA）\supercite{Cytron:1991}指的是程序中每一个变量只被定义恰好一次。变量可以被多次定义的原始形式的程序被转换为SSA形式后，被多次定义的原始变量被分割为不同的实例，每个实例对应一次定义。在程序控制流图的交汇点，同一个变量的不同实例通过$ \phi $函数进行合并，产生一个这个变量的一个新的实例。SSA形式非常适于进行稀疏数据流分析，因为它显式地表示出了“定义－使用”关系，使得数据流信息可以直接沿着变量定义－变量使用边进行传播\supercite{Reif:1977}。图\ref{code:ssa}是一个原始形式程序与相应的SSA形式的例子。
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}{0.5\linewidth}
+\centering
+\begin{BVerbatim}
+a = 0;
+if(...) {
+    a = 1;
+} else {
+    a = 2;
+}
+\end{BVerbatim}
+\caption{原始形式}
+\end{subfigure}%
+\begin{subfigure}{0.5\linewidth}
+\centering
+\begin{tabular}{c}
+\begin{lstlisting}
+a$_0$ = 0;
+if(...) {
+  a$_1$ = 1;
+} else {
+  a$_2$ = 1;
+}
+a$_3$ = $\phi$(a$_1$, a$_2$);
+\end{lstlisting}
+\end{tabular}
+\caption{SSA形式}
+\end{subfigure}
+\caption{SSA形式示例}\label{code:ssa}
+\end{figure}
+
+\subsection{辅助指针分析}
+
+指针的存在使得SSA转换变得困难，所以现代编译器的中间表示格式，比如LLVM IR \supercite{llvm}，往往是“部分SSA形式”，即被取过地址的变量仍然是可修改的内存中的变量形式，而没有被取过地址的变量则可以被优化为静态单赋值形式。而如果我们想把程序中的所有变量转换为SSA形式，则必须要进行指针分析，从而知道通过指针进行的间接访问修改的是哪些变量。但因为指针分析生成的是“保守”的结果（即指针分析结果认为 p 指向 a ，实际上 p 不一定真的会指向 a ，但指针分析一定包含真实的结果），所以通过指针分析识别出的间接访问、修改实际只是“潜在“间接修改。我们也采用 Chow等人\supercite{Chow:1996}的方法，对于间接写入（如 \verb|*x = y| ） 我们会把其视作对  \verb|x| 所有可能指向的 \verb|a| 进行既读取又修改，对于间接读取（如 \verb|y = *x|），我们把其当作当作对 \verb|x| 所有可能指向的 \verb|a| 进行了读取。
+
+辅助分析的选择只要是安全的即可，Hardekopf等人的研究工作\supercite{Hardekopf2011}中选择的是流不敏感、上下文不敏感的基于子集的分析算法（ Andersen算法 ）。而在我们的研究工作中，我们选择使用Lattner等人的DSA算法。DSA算法相对于Andersen算法效率更高，且因为DSA算法是基于合一的，所以在分析结果中，每个指针总是指向最多一个“变量等价类”，所以我们在构造SSA形式时，可以以变量等价类为基本单位，从而简化算法并在某些情况下改进算法的效率。而如果使用 Andersen算法，则需要像SFS算法一样进行额外的识别变量等价类的步骤（\cite{Hardekopf2011}中的 Access Equivalence 优化）。
+
+% 中间形式示例
+我们通过图\ref{code:ssa2}中的程序对我们的转换方法进行示例。在图\ref{code:ssa2:l}的程序中，指针 \verb|p| 既可能指向 \verb|a| 也可能指向 \verb|b| ，所以对于流不敏感、基于合一的DSA会将 \verb|a| 和 \verb|b| 视为一个“变量等价类”，并且 \verb|q| 也指向这一个等价类。根据辅助指针分析提供的信息，我们可以知道原始程序每条语句都直接或间接地修改哪些变量。图\ref{code:ssa3}显式地在程序中标注出了通过指针进行间接访问的变量。按照Chow等人的记号\supercite{Chow:1996}， 我们对间接读取用 $\mu()$ 、间接写入用 $\chi()$ 这两个虚拟函数表示。
+
+\begin{figure}
+\centering
+\begin{subfigure}{0.5\linewidth}
+\centering
+\begin{tabular}{c}
+\begin{lstlisting}
+int a, b;
+int *p, *q;
+if(...) {
+    p = &b;
+    q = &a;
+    *p = a;
+    b = *q;
+} else {
+    p = &a;
+    *p = 0;
+}
+a = b;
+\end{lstlisting}
+\end{tabular}
+\caption{}\label{code:ssa2:l}
+\end{subfigure}%
+\begin{subfigure}{0.5\linewidth}
+\centering
+\centering
+\begin{tikzpicture}[node distance=1cm and 1cm]
+\node[round node] (p) {p};
+\node[right=of p] (c) {};
+\node[round node, right=of c] (q) {q};
+\node[round node, below=of c] (ab) {a, b};
+\graph{
+    (p) -> (ab);
+    (q) -> (ab);    
+};
+\end{tikzpicture}
+\caption{}    
+\end{subfigure}
+\caption{左图：一段示例程序。右图：DSA生成的这段程序的指向图。}
+\label{code:ssa2}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{tabular}{c}
+\begin{lstlisting}
+int a, b;
+int *p, *q;
+if(...) {
+    p = &b;
+    q = &a;
+    *p = a; ab = $\chi(\text{ab})$; 
+    b = *q; $\mu(\text{ab})$;
+} else {
+    p = &a;
+    *p = 0; ab = $\chi(\text{ab})$;
+}
+a = b;
+\end{lstlisting}
+\end{tabular}
+\caption{显式标注了通过间接读取修改的变量的程序}\label{code:ssa3}
+\end{figure}
+
+% SSA放置算法
+\subsection{$\phi()$函数放置}
+在知道每条语句可能会修改哪些变量后，我们可以使用标准算法\supercite{aycock2000simple}\supercite{bilardi2003algorithms}\supercite{cytron1995efficiently}\supercite{Cytron:1991}将代码转换为静态单赋值形式。我们实现的算法按如下几个步骤进行：
+
+\begin{enumerate}[topsep=1em, itemsep=1em]
+\item 对每一条修改变量的指令放置一个$\phi$指令在支配边界处。在我们的实现中，我们直接使用 LLVM 提供的支配树分析结果来获取每个基本块的支配边界。算法伪代码见图\ref{alg:phi1}。注意我们对分配变量的指令 \verb|AllocInst| 理解为它也修改了它分配的变量的值为“任意值”。
+\item 然后我们对所有新添加的 $\phi$ 节点也在它们的支配边界放置新的$\phi$结点，直到所有的$\phi$结点都被这样处理。如图\ref{alg:phi2}。
+\item 遍历程序，对每条访问内存变量的指令解析出它访问的变量的上一次“定义”在哪里。方法是：按直接支配关系遍历每个基本块，同时维护每个变量的最后一次定义的位置。对于每个基本块，首先对基本块内每条指令根据维护的“最后一次定义位置”解析出它们的“定义－使用边”，然后对这个基本块在CFG中的所有后继基本块，更新后继基本块开头的$\phi$结点的参数，最后递归处理基本块在支配树上的儿子基本块（既被本基本块直接支配的基本块）。算法如图\ref{alg:phi3}。
+\end{enumerate}
+
+对于图\ref{code:ssa3}中的程序，经过SSA放置算法处理之后的结果可参见图\ref{}。
+
+% 过程间memSSA
+\subsection{过程间内存SSA}
+
+\section{局部分析阶段}
+
+\section{自下而上分析阶段}
+% vim:ts=4:sw=4

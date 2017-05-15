@@ -1,0 +1,995 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.7 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{ecnty/global/}
+    \entry{andersen1994program}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=77a3023c4a3d0d23616fdc6e2dd95170}{%
+           family={Andersen},
+           family_i={A\bibinitperiod},
+           given={Lars\bibnamedelima Ole},
+           given_i={L\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of Cophenhagen}%
+      }
+      \strng{namehash}{77a3023c4a3d0d23616fdc6e2dd95170}
+      \strng{fullhash}{77a3023c4a3d0d23616fdc6e2dd95170}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Program analysis and specialization for the C programming language}
+      \field{type}{phdthesis}
+      \field{userf}{en}
+      \field{year}{1994}
+    \endentry
+    \entry{aycock2000simple}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=049b32b7099aaf092ef4ab0d94f82dc5}{%
+           family={Aycock},
+           family_i={A\bibinitperiod},
+           given={John},
+           given_i={J\bibinitperiod}}}%
+        {{hash=7eeeb0178c7418e05cca4b22964976ac}{%
+           family={Horspool},
+           family_i={H\bibinitperiod},
+           given={Nigel},
+           given_i={N\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{1a600013d4bdfaa36a30c60b8ba33312}
+      \strng{fullhash}{1a600013d4bdfaa36a30c60b8ba33312}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International Conference on Compiler Construction}
+      \field{title}{Simple generation of static single-assignment form}
+      \field{userf}{en}
+      \field{year}{2000}
+      \field{pages}{110\bibrangedash 125}
+      \range{pages}{16}
+    \endentry
+    \entry{bilardi2003algorithms}{article}{}
+      \name{author}{2}{}{%
+        {{hash=90135c29bf61e9b6bf01557caf22d86f}{%
+           family={Bilardi},
+           family_i={B\bibinitperiod},
+           given={Gianfranco},
+           given_i={G\bibinitperiod}}}%
+        {{hash=e7f2014846734dae8a242e557fdafb65}{%
+           family={Pingali},
+           family_i={P\bibinitperiod},
+           given={Keshav},
+           given_i={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{b15d44dce7a8e9b23aabb79d51db3b1e}
+      \strng{fullhash}{b15d44dce7a8e9b23aabb79d51db3b1e}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of the ACM (JACM)}
+      \field{number}{3}
+      \field{title}{Algorithms for computing the static single assignment form}
+      \field{userf}{en}
+      \field{volume}{50}
+      \field{year}{2003}
+      \field{pages}{375\bibrangedash 425}
+      \range{pages}{51}
+    \endentry
+    \entry{Choi:1993}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=a6e619e8821472ddf705a8899e7508fa}{%
+           family={Choi},
+           family_i={C\bibinitperiod},
+           given={Jong-Deok},
+           given_i={J\bibinithyphendelim D\bibinitperiod}}}%
+        {{hash=97f2291a10e7dc9c44c3ff82cc6ed852}{%
+           family={Burke},
+           family_i={B\bibinitperiod},
+           given={Michael},
+           given_i={M\bibinitperiod}}}%
+        {{hash=1300215cc3a252ed5032918bfef9fa6e}{%
+           family={Carini},
+           family_i={C\bibinitperiod},
+           given={Paul},
+           given_i={P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Charleston, South Carolina, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{1bdf7b9c2ae374ee127095fd0449d422}
+      \strng{fullhash}{1bdf7b9c2ae374ee127095fd0449d422}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 20th ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages}
+      \field{isbn}{0-89791-560-7}
+      \field{series}{POPL '93}
+      \field{title}{Efficient Flow-sensitive Interprocedural Computation of Pointer-induced Aliases and Side Effects}
+      \field{userf}{en}
+      \field{year}{1993}
+      \field{pages}{232\bibrangedash 245}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1145/158511.158639
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/158511.158639
+      \endverb
+    \endentry
+    \entry{choi1991automatic}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=a6e619e8821472ddf705a8899e7508fa}{%
+           family={Choi},
+           family_i={C\bibinitperiod},
+           given={Jong-Deok},
+           given_i={J\bibinithyphendelim D\bibinitperiod}}}%
+        {{hash=d3bf95fb7ffd4d52d1aaf099ebc2c62d}{%
+           family={Cytron},
+           family_i={C\bibinitperiod},
+           given={Ron},
+           given_i={R\bibinitperiod}}}%
+        {{hash=a825af87e6c4e5560a8dad0db67120a9}{%
+           family={Ferrante},
+           family_i={F\bibinitperiod},
+           given={Jeanne},
+           given_i={J\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{e2212902e3c552fd1032c866fd80082c}
+      \strng{fullhash}{e2212902e3c552fd1032c866fd80082c}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 18th ACM SIGPLAN-SIGACT symposium on Principles of programming languages}
+      \field{title}{Automatic construction of sparse data flow evaluation graphs}
+      \field{userf}{en}
+      \field{year}{1991}
+      \field{pages}{55\bibrangedash 66}
+      \range{pages}{12}
+    \endentry
+    \entry{Chow:1996}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=27042e43404c890cc61aba228a1af102}{%
+           family={Chow},
+           family_i={C\bibinitperiod},
+           given={Fred\bibnamedelima C.},
+           given_i={F\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=50b2da54a8b9a5509ecc613477426da4}{%
+           family={Chan},
+           family_i={C\bibinitperiod},
+           given={Sun},
+           given_i={S\bibinitperiod}}}%
+        {{hash=d4c243166415734326b90d463413c37d}{%
+           family={Liu},
+           family_i={L\bibinitperiod},
+           given={Shin-Ming},
+           given_i={S\bibinithyphendelim M\bibinitperiod}}}%
+        {{hash=49e37e3524a9137a614d2d9a7fbb318b}{%
+           family={Lo},
+           family_i={L\bibinitperiod},
+           given={Raymond},
+           given_i={R\bibinitperiod}}}%
+        {{hash=57b8d3f791f350d42e1806ec4a300cc6}{%
+           family={Streich},
+           family_i={S\bibinitperiod},
+           given={Mark},
+           given_i={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {London, UK, UK}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{6535aa49fe2a30123d7d8fa16a46c329}
+      \strng{fullhash}{4d21d15cb37af4389b1d6af0a43a5788}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 6th International Conference on Compiler Construction}
+      \field{isbn}{3-540-61053-7}
+      \field{series}{CC '96}
+      \field{title}{Effective Representation of Aliases and Indirect Memory Operations in SSA Form}
+      \field{userf}{en}
+      \field{year}{1996}
+      \field{pages}{253\bibrangedash 267}
+      \range{pages}{15}
+      \verb{url}
+      \verb http://dl.acm.org/citation.cfm?id=647473.760381
+      \endverb
+    \endentry
+    \entry{cytron1995efficiently}{article}{}
+      \name{author}{2}{}{%
+        {{hash=8aab949a1974503014d3bab33a63fd6e}{%
+           family={Cytron},
+           family_i={C\bibinitperiod},
+           given={Ron\bibnamedelima K},
+           given_i={R\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=a825af87e6c4e5560a8dad0db67120a9}{%
+           family={Ferrante},
+           family_i={F\bibinitperiod},
+           given={Jeanne},
+           given_i={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{c98248783126d86dc0146ad3a7f08c79}
+      \strng{fullhash}{c98248783126d86dc0146ad3a7f08c79}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ACM Transactions on Programming Languages and Systems (TOPLAS)}
+      \field{number}{3}
+      \field{title}{Efficiently computing $\varphi$-nodes on-the-fly}
+      \field{userf}{en}
+      \field{volume}{17}
+      \field{year}{1995}
+      \field{pages}{487\bibrangedash 506}
+      \range{pages}{20}
+    \endentry
+    \entry{Cytron:1991}{article}{}
+      \name{author}{5}{}{%
+        {{hash=d3bf95fb7ffd4d52d1aaf099ebc2c62d}{%
+           family={Cytron},
+           family_i={C\bibinitperiod},
+           given={Ron},
+           given_i={R\bibinitperiod}}}%
+        {{hash=a825af87e6c4e5560a8dad0db67120a9}{%
+           family={Ferrante},
+           family_i={F\bibinitperiod},
+           given={Jeanne},
+           given_i={J\bibinitperiod}}}%
+        {{hash=a2c9dd42e5c3e22d1ae7b84922fd7c6b}{%
+           family={Rosen},
+           family_i={R\bibinitperiod},
+           given={Barry\bibnamedelima K.},
+           given_i={B\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=3e337a50f8a18697d62d915244009d00}{%
+           family={Wegman},
+           family_i={W\bibinitperiod},
+           given={Mark\bibnamedelima N.},
+           given_i={M\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=f7b1172decec8c47fb496397e61ab24c}{%
+           family={Zadeck},
+           family_i={Z\bibinitperiod},
+           given={F.\bibnamedelimi Kenneth},
+           given_i={F\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{088c24edec720cc7ddeb4ae708b72739}
+      \strng{fullhash}{cdc07eca9047bfd7a0af5064c60e42b8}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0164-0925}
+      \field{journaltitle}{ACM Trans. Program. Lang. Syst.}
+      \field{month}{10}
+      \field{number}{4}
+      \field{title}{Efficiently Computing Static Single Assignment Form and the Control Dependence Graph}
+      \field{userf}{en}
+      \field{volume}{13}
+      \field{year}{1991}
+      \field{pages}{451\bibrangedash 490}
+      \range{pages}{40}
+      \verb{doi}
+      \verb 10.1145/115372.115320
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/115372.115320
+      \endverb
+      \keyw{control dependence,control flow graph,def-use chain,dominator,optimizing compilers}
+    \endentry
+    \entry{Foster2007}{article}{}
+      \name{author}{5}{}{%
+        {{hash=1f21ab67fd8044ef1c794c6278cb3b2b}{%
+           family={Foster},
+           family_i={F\bibinitperiod},
+           given={J.\bibnamedelimi Nathan},
+           given_i={J\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=aac0319274e959147db462b53e114890}{%
+           family={Greenwald},
+           family_i={G\bibinitperiod},
+           given={Michael\bibnamedelima B.},
+           given_i={M\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=c02b1b1119ada121a87b4c742b97ed20}{%
+           family={Moore},
+           family_i={M\bibinitperiod},
+           given={Jonathan\bibnamedelima T.},
+           given_i={J\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=8eb1c0a7778a466aa612ab3259d489ec}{%
+           family={Pierce},
+           family_i={P\bibinitperiod},
+           given={Benjamin\bibnamedelima C.},
+           given_i={B\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=2c7b1bc1840550e1c1368eda101877d3}{%
+           family={Schmitt},
+           family_i={S\bibinitperiod},
+           given={Alan},
+           given_i={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{a9990f78a42f9d0c66bc1ac15de05e51}
+      \strng{fullhash}{5bfbd2a252eba06423da228896a8941b}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0164-0925}
+      \field{journaltitle}{ACM Trans. Program. Lang. Syst.}
+      \field{month}{05}
+      \field{number}{3}
+      \field{title}{Combinators for Bidirectional Tree Transformations: A Linguistic Approach to the View-update Problem}
+      \field{userf}{en}
+      \field{volume}{29}
+      \field{year}{2007}
+      \verb{doi}
+      \verb 10.1145/1232420.1232424
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/1232420.1232424
+      \endverb
+      \keyw{Bidirectional programming,Harmony,XML,lenses,view update problem}
+    \endentry
+    \entry{Hardekopf2007}{article}{}
+      \name{author}{2}{}{%
+        {{hash=7040c63dc6c9737d3fd7f49f32e04ae0}{%
+           family={Hardekopf},
+           family_i={H\bibinitperiod},
+           given={Ben},
+           given_i={B\bibinitperiod}}}%
+        {{hash=e7490315ed884878496eb785fd321ca7}{%
+           family={Lin},
+           family_i={L\bibinitperiod},
+           given={C.},
+           given_i={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{d523e43d2ef6e9a04d57c6aded020f59}
+      \strng{fullhash}{d523e43d2ef6e9a04d57c6aded020f59}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9781595936332}
+      \field{journaltitle}{Proceedings of the 2007 ACM SIGPLAN conference on Programming language design and implementation}
+      \field{title}{{The ant and the grasshopper: fast and accurate pointer analysis for millions of lines of code}}
+      \field{userf}{en}
+      \field{volume}{42}
+      \field{year}{2007}
+      \field{pages}{290\bibrangedash 299}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/1250734.1250767
+      \endverb
+      \verb{url}
+      \verb http://portal.acm.org/citation.cfm?id=1250767
+      \endverb
+      \keyw{algorithms,performance}
+    \endentry
+    \entry{hardekopf2007exploiting}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=7040c63dc6c9737d3fd7f49f32e04ae0}{%
+           family={Hardekopf},
+           family_i={H\bibinitperiod},
+           given={Ben},
+           given_i={B\bibinitperiod}}}%
+        {{hash=7b047fc1b3e746eee6cb45b8b2212598}{%
+           family={Lin},
+           family_i={L\bibinitperiod},
+           given={Calvin},
+           given_i={C\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{b560569dd587d6a9b1dc9265c766d35e}
+      \strng{fullhash}{b560569dd587d6a9b1dc9265c766d35e}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International Static Analysis Symposium}
+      \field{title}{Exploiting pointer and location equivalence to optimize pointer analysis}
+      \field{userf}{en}
+      \field{year}{2007}
+      \field{pages}{265\bibrangedash 280}
+      \range{pages}{16}
+    \endentry
+    \entry{Hardekopf2011}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=7040c63dc6c9737d3fd7f49f32e04ae0}{%
+           family={Hardekopf},
+           family_i={H\bibinitperiod},
+           given={Ben},
+           given_i={B\bibinitperiod}}}%
+        {{hash=7b047fc1b3e746eee6cb45b8b2212598}{%
+           family={Lin},
+           family_i={L\bibinitperiod},
+           given={Calvin},
+           given_i={C\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Washington, DC, USA}%
+      }
+      \list{publisher}{1}{%
+        {IEEE Computer Society}%
+      }
+      \strng{namehash}{b560569dd587d6a9b1dc9265c766d35e}
+      \strng{fullhash}{b560569dd587d6a9b1dc9265c766d35e}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 9th Annual IEEE/ACM International Symposium on Code Generation and Optimization}
+      \field{isbn}{978-1-61284-356-8}
+      \field{series}{CGO '11}
+      \field{title}{Flow-sensitive Pointer Analysis for Millions of Lines of Code}
+      \field{userf}{en}
+      \field{year}{2011}
+      \field{pages}{289\bibrangedash 298}
+      \range{pages}{10}
+      \verb{url}
+      \verb http://dl.acm.org/citation.cfm?id=2190025.2190075
+      \endverb
+    \endentry
+    \entry{hardekopf2011flow}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=7040c63dc6c9737d3fd7f49f32e04ae0}{%
+           family={Hardekopf},
+           family_i={H\bibinitperiod},
+           given={Ben},
+           given_i={B\bibinitperiod}}}%
+        {{hash=7b047fc1b3e746eee6cb45b8b2212598}{%
+           family={Lin},
+           family_i={L\bibinitperiod},
+           given={Calvin},
+           given_i={C\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{b560569dd587d6a9b1dc9265c766d35e}
+      \strng{fullhash}{b560569dd587d6a9b1dc9265c766d35e}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Code Generation and Optimization (CGO), 2011 9th Annual IEEE/ACM International Symposium on}
+      \field{title}{Flow-sensitive pointer analysis for millions of lines of code}
+      \field{userf}{en}
+      \field{year}{2011}
+      \field{pages}{289\bibrangedash 298}
+      \range{pages}{10}
+    \endentry
+    \entry{Hardekopf2009}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=7040c63dc6c9737d3fd7f49f32e04ae0}{%
+           family={Hardekopf},
+           family_i={H\bibinitperiod},
+           given={Ben},
+           given_i={B\bibinitperiod}}}%
+        {{hash=7b047fc1b3e746eee6cb45b8b2212598}{%
+           family={Lin},
+           family_i={L\bibinitperiod},
+           given={Calvin},
+           given_i={C\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Savannah, GA, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{b560569dd587d6a9b1dc9265c766d35e}
+      \strng{fullhash}{b560569dd587d6a9b1dc9265c766d35e}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 36th Annual ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages}
+      \field{isbn}{978-1-60558-379-2}
+      \field{series}{POPL '09}
+      \field{title}{Semi-sparse Flow-sensitive Pointer Analysis}
+      \field{userf}{en}
+      \field{year}{2009}
+      \field{pages}{226\bibrangedash 238}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1145/1480881.1480911
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/1480881.1480911
+      \endverb
+      \keyw{alias analysis,pointer analysis}
+    \endentry
+    \entry{Kahlon:2008}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=85840a0937c6f3f4411d0c748fd58fef}{%
+           family={Kahlon},
+           family_i={K\bibinitperiod},
+           given={Vineet},
+           given_i={V\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Tucson, AZ, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{85840a0937c6f3f4411d0c748fd58fef}
+      \strng{fullhash}{85840a0937c6f3f4411d0c748fd58fef}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 29th ACM SIGPLAN Conference on Programming Language Design and Implementation}
+      \field{isbn}{978-1-59593-860-2}
+      \field{series}{PLDI '08}
+      \field{title}{Bootstrapping: A Technique for Scalable Flow and Context-sensitive Pointer Alias Analysis}
+      \field{userf}{en}
+      \field{year}{2008}
+      \field{pages}{249\bibrangedash 259}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1145/1375581.1375613
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/1375581.1375613
+      \endverb
+      \keyw{context-sensitive analysis,demand-driven analysis,divide and conquer,steensgaard partitioning,summarization}
+    \endentry
+    \entry{llvm}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=082d304bf1444853e07be11590d172a2}{%
+           family={Lattner},
+           family_i={L\bibinitperiod},
+           given={Chris},
+           given_i={C\bibinitperiod}}}%
+        {{hash=1bbfd49b96c18edb5a0c84c94c3fa6c4}{%
+           family={Adve},
+           family_i={A\bibinitperiod},
+           given={Vikram},
+           given_i={V\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE Computer Society}%
+      }
+      \strng{namehash}{0964e8d9ddfb3d949bce90ef30732275}
+      \strng{fullhash}{0964e8d9ddfb3d949bce90ef30732275}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the international symposium on Code generation and optimization: feedback-directed and runtime optimization}
+      \field{title}{LLVM: A compilation framework for lifelong program analysis \& transformation}
+      \field{userf}{en}
+      \field{year}{2004}
+      \field{pages}{75}
+      \range{pages}{1}
+    \endentry
+    \entry{Lattner2007}{article}{}
+      \name{author}{3}{}{%
+        {{hash=082d304bf1444853e07be11590d172a2}{%
+           family={Lattner},
+           family_i={L\bibinitperiod},
+           given={Chris},
+           given_i={C\bibinitperiod}}}%
+        {{hash=182a1baf42f30dbae1a8746e5d72fedb}{%
+           family={Lenharth},
+           family_i={L\bibinitperiod},
+           given={Andrew},
+           given_i={A\bibinitperiod}}}%
+        {{hash=1bbfd49b96c18edb5a0c84c94c3fa6c4}{%
+           family={Adve},
+           family_i={A\bibinitperiod},
+           given={Vikram},
+           given_i={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{4f51a1d007af3e53e14603394f2ac9b1}
+      \strng{fullhash}{4f51a1d007af3e53e14603394f2ac9b1}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9781595936332}
+      \field{issn}{03621340}
+      \field{journaltitle}{ACM SIGPLAN Notices}
+      \field{title}{{Making context-sensitive points-to analysis with heap cloning practical for the real world}}
+      \field{userf}{en}
+      \field{volume}{42}
+      \field{year}{2007}
+      \field{pages}{278}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1145/1273442.1250766
+      \endverb
+      \keyw{and in part by,ccr-9988482 and ccf-0429561,context-sensitive,eia-0103756,field-sensitive,in part by nsf,in-,pointer analysis,recursive data structure,static analysis,terprocedural,the univer-,this work is supported,under grant numbers eia-0093426}
+    \endentry
+    \entry{Nystrom2004}{inbook}{}
+      \name{author}{3}{}{%
+        {{hash=14c383851503fc2f7607430789498d49}{%
+           family={Nystrom},
+           family_i={N\bibinitperiod},
+           given={Erik\bibnamedelima M.},
+           given_i={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=0d82f145c52129526224d050d1e91fc4}{%
+           family={Kim},
+           family_i={K\bibinitperiod},
+           given={Hong-Seok},
+           given_i={H\bibinithyphendelim S\bibinitperiod}}}%
+        {{hash=a661bc18ff33db83445572b3c5ca6ad9}{%
+           family={Hwu},
+           family_i={H\bibinitperiod},
+           given={Wen-mei\bibnamedelima W.},
+           given_i={W\bibinithyphendelim m\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=6d8cb6af4a5b9439461ca60b0f177f91}{%
+           family={Giacobazzi},
+           family_i={G\bibinitperiod},
+           given={Roberto},
+           given_i={R\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{05ec770a7968cf8886687f8bbcdfca58}
+      \strng{fullhash}{05ec770a7968cf8886687f8bbcdfca58}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Static Analysis: 11th International Symposium, SAS 2004, Verona, Italy, August 26-28, 2004. Proceedings}
+      \field{isbn}{978-3-540-27864-1}
+      \field{title}{Bottom-Up and Top-Down Context-Sensitive Summary-Based Pointer Analysis}
+      \field{userf}{en}
+      \field{year}{2004}
+      \field{pages}{165\bibrangedash 180}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1007/978-3-540-27864-1_14
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/978-3-540-27864-1_14
+      \endverb
+    \endentry
+    \entry{nystrom2004importance}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=176cba1f56ed0bf8d1a55fdc28e0883a}{%
+           family={Nystrom},
+           family_i={N\bibinitperiod},
+           given={Erik\bibnamedelima M},
+           given_i={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=0d82f145c52129526224d050d1e91fc4}{%
+           family={Kim},
+           family_i={K\bibinitperiod},
+           given={Hong-Seok},
+           given_i={H\bibinithyphendelim S\bibinitperiod}}}%
+        {{hash=21c16d501ae00428203e4c9d6b040f41}{%
+           family={Hwu},
+           family_i={H\bibinitperiod},
+           given={Wen-mei\bibnamedelima W},
+           given_i={W\bibinithyphendelim m\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{8bd0f79c6d5fad418141f8bfdd505001}
+      \strng{fullhash}{8bd0f79c6d5fad418141f8bfdd505001}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 5th ACM SIGPLAN-SIGSOFT workshop on Program analysis for software tools and engineering}
+      \field{title}{Importance of heap specialization in pointer analysis}
+      \field{userf}{en}
+      \field{year}{2004}
+      \field{pages}{43\bibrangedash 48}
+      \range{pages}{6}
+    \endentry
+    \entry{Reif:1977}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=09e83aa40a5fd9b4477dc3bf9b1922b9}{%
+           family={Reif},
+           family_i={R\bibinitperiod},
+           given={John\bibnamedelima H.},
+           given_i={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=aa7eee65d0cf4f71b74b25f7980217ec}{%
+           family={Lewis},
+           family_i={L\bibinitperiod},
+           given={Harry\bibnamedelima R.},
+           given_i={H\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Los Angeles, California}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{1344eb4ccbf8180d0d7e1f44b638e7dd}
+      \strng{fullhash}{1344eb4ccbf8180d0d7e1f44b638e7dd}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 4th ACM SIGACT-SIGPLAN Symposium on Principles of Programming Languages}
+      \field{series}{POPL '77}
+      \field{title}{Symbolic Evaluation and the Global Value Graph}
+      \field{userf}{en}
+      \field{year}{1977}
+      \field{pages}{104\bibrangedash 118}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1145/512950.512961
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/512950.512961
+      \endverb
+    \endentry
+    \entry{Reps1998}{article}{}
+      \name{author}{1}{}{%
+        {{hash=6f36e6e7adcf648730340faa1a264a24}{%
+           family={Reps},
+           family_i={R\bibinitperiod},
+           given={Thomas},
+           given_i={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{6f36e6e7adcf648730340faa1a264a24}
+      \strng{fullhash}{6f36e6e7adcf648730340faa1a264a24}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper describes how a number of program-analysis problems can be solved by transforming them to graph-reachability problems. Some of the program-analysis problems that are amenable to this treatment include program slicing, certain dataflow-analysis problems, one version of the problem of approximating the possible “shapes” that heap-allocated structures in a program can take on, and flow-insensitive points-to analysis. Relationships between graph reachability and other approaches to program analysis are described. Some techniques that go beyond pure graph reachability are also discussed.}
+      \field{isbn}{0262631806}
+      \field{issn}{09505849}
+      \field{journaltitle}{Information and Software Technology}
+      \field{number}{11-12}
+      \field{title}{{Program analysis via graph reachability}}
+      \field{userf}{en}
+      \field{volume}{40}
+      \field{year}{1998}
+      \field{pages}{701\bibrangedash 726}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.1016/S0950-5849(98)00093-7
+      \endverb
+      \verb{url}
+      \verb http://www.sciencedirect.com/science/article/pii/S0950584998000937
+      \endverb
+      \keyw{stat,static analysi,static analysis}
+    \endentry
+    \entry{Steensgaard1996}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=1cdaee550be42c9998ef01728483272e}{%
+           family={Steensgaard},
+           family_i={S\bibinitperiod},
+           given={Bjarne},
+           given_i={B\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {London, UK, UK}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{1cdaee550be42c9998ef01728483272e}
+      \strng{fullhash}{1cdaee550be42c9998ef01728483272e}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 6th International Conference on Compiler Construction}
+      \field{isbn}{3-540-61053-7}
+      \field{series}{CC '96}
+      \field{title}{Points-to Analysis by Type Inference of Programs with Structures and Unions}
+      \field{userf}{en}
+      \field{year}{1996}
+      \field{pages}{136\bibrangedash 150}
+      \range{pages}{15}
+      \verb{url}
+      \verb http://dl.acm.org/citation.cfm?id=647473.727458
+      \endverb
+    \endentry
+    \entry{sui2014making}{article}{}
+      \name{author}{4}{}{%
+        {{hash=4f8972ae9d4a27c62278025a98c8b389}{%
+           family={Sui},
+           family_i={S\bibinitperiod},
+           given={Yulei},
+           given_i={Y\bibinitperiod}}}%
+        {{hash=692348081f621352fa3dbcd6a22bf8d5}{%
+           family={Ye},
+           family_i={Y\bibinitperiod},
+           given={Sen},
+           given_i={S\bibinitperiod}}}%
+        {{hash=efabe5d8676a39f9890b055b67157b43}{%
+           family={Xue},
+           family_i={X\bibinitperiod},
+           given={Jingling},
+           given_i={J\bibinitperiod}}}%
+        {{hash=2f4cc163c8766d4437008ea260208de8}{%
+           family={Zhang},
+           family_i={Z\bibinitperiod},
+           given={Jie},
+           given_i={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{fc49721a65f3a0518d76c4e78cd20f92}
+      \strng{fullhash}{5724c46e19bcb4146095934bc187e912}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Software: Practice and Experience}
+      \field{number}{12}
+      \field{title}{Making context-sensitive inclusion-based pointer analysis practical for compilers using parameterised summarisation}
+      \field{userf}{en}
+      \field{volume}{44}
+      \field{year}{2014}
+      \field{pages}{1485\bibrangedash 1510}
+      \range{pages}{26}
+    \endentry
+    \entry{weihl1980interprocedural}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=9d3e9114d109e89b3b0ab38c1063c4cd}{%
+           family={Weihl},
+           family_i={W\bibinitperiod},
+           given={William\bibnamedelima E},
+           given_i={W\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{9d3e9114d109e89b3b0ab38c1063c4cd}
+      \strng{fullhash}{9d3e9114d109e89b3b0ab38c1063c4cd}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 7th ACM SIGPLAN-SIGACT symposium on Principles of programming languages}
+      \field{title}{Interprocedural data flow analysis in the presence of pointers, procedure variables, and label variables}
+      \field{userf}{en}
+      \field{year}{1980}
+      \field{pages}{83\bibrangedash 94}
+      \range{pages}{12}
+    \endentry
+    \entry{Whaley2004}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=6500acb1f517721335bd92d24e2bb33a}{%
+           family={Whaley},
+           family_i={W\bibinitperiod},
+           given={John},
+           given_i={J\bibinitperiod}}}%
+        {{hash=c6e8ad520de884393c2780a9a26c7d31}{%
+           family={Lam},
+           family_i={L\bibinitperiod},
+           given={Monica\bibnamedelima S.},
+           given_i={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Washington DC, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{8d4616cb18b94fcf0f6b082e8f093a3a}
+      \strng{fullhash}{8d4616cb18b94fcf0f6b082e8f093a3a}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the ACM SIGPLAN 2004 Conference on Programming Language Design and Implementation}
+      \field{isbn}{1-58113-807-5}
+      \field{series}{PLDI '04}
+      \field{title}{Cloning-based Context-sensitive Pointer Alias Analysis Using Binary Decision Diagrams}
+      \field{userf}{en}
+      \field{year}{2004}
+      \field{pages}{131\bibrangedash 144}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1145/996841.996859
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/996841.996859
+      \endverb
+      \keyw{Datalog,Java,binary decision diagrams,cloning,context-sensitive,inclusion-based,logic programming,pointer analysis,program analysis,scalable}
+    \endentry
+    \entry{Zhu:2005}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=53b5a055f078ac8207f5f0c7f27b4eb6}{%
+           family={Zhu},
+           family_i={Z\bibinitperiod},
+           given={Jianwen},
+           given_i={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Anaheim, California, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{53b5a055f078ac8207f5f0c7f27b4eb6}
+      \strng{fullhash}{53b5a055f078ac8207f5f0c7f27b4eb6}
+      \field{sortinit}{e}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 42Nd Annual Design Automation Conference}
+      \field{isbn}{1-59593-058-2}
+      \field{series}{DAC '05}
+      \field{title}{Towards Scalable Flow and Context Sensitive Pointer Analysis}
+      \field{userf}{en}
+      \field{year}{2005}
+      \field{pages}{831\bibrangedash 836}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1145/1065579.1065798
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/1065579.1065798
+      \endverb
+      \keyw{binary decision diagrams,high-level synthesis,pointer analysis}
+    \endentry
+  \endsortlist
+  \missing{repsUndecidable}
+  \missing{fieldSensitivity}
+  \missing{rice}
+  \missing{summary}
+  \missing{earlyFS...}
+  \missing{cs-clone...}
+  \missing{Tarjan}
+\endrefsection
+\endinput
+

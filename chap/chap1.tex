@@ -1,0 +1,178 @@
+% Copyright (c) 2014,2016 Casper Ti. Vector
+% Public domain.
+
+\chapter{指针分析中的“敏感性”}\label{relatedWork}
+
+指针分析的目标是对程序中指针变量可能的取值进行静态分析。由计算复杂性中的Rice定理\supercite{rice}可知，精确的指针分析是可不判定问题。所以现实的指针分析算法皆需要对精确结果进行某种近似，以得到能有效中止的算法。一般来说，指针分析算法进行的是“上近似”，也就是算法输出的结果总是包含真实的精确结果。
+
+各类指针分析算法所采取的近似方法一般可以按如下几个维度进行分类：
+
+\begin{itemize}
+	\item 赋值方向性，即是基于合一还是基于子集。
+	\item 上下文敏感性。
+	\item 对堆的建模方式。
+	\item 流敏感性。
+	\item 域敏感性。
+\end{itemize}
+
+\section{赋值方向性}
+基于合一的分析方法的代表性工作是 Steensgaard 算法\supercite{Steensgaard1996}。基于合一指的是，如果两个变量可能被同一个指针指向，那么这两个被指向的变量被视作“等价”，分析认为任何可能指向其中某一个变量的指针也可能会指向另一个。所以对基于合一的分析算法来说，一个指针最多指向一个变量的等价类。显然这样的近似策略会得到比精确结果更大的答案，然而这样的策略使得分析算法可以使用 Tarjan 等人的Union-Find\supercite{Tarjan} 数据结构维护变量的等价类，使得任何类型的语句都可以在常数时间处理。Steensgaard 算法同时也是上下文不敏感且流不敏感的，所以拥有对被分析语句条数线性时间的复杂度。Steensgaard算法是第一个可以进行大规模分析的指针分析算法，在实践中得到大量使用。
+
+基于子集的分析方法的代表性工作是知名的 Anderson 算法 \supercite{andersen1994program}。基于子集即是指没有采用基于合一的近似方法，也就是每个指针可以指向任意数量的变量。于是对于程序中形如 \verb|p = q| 的语句，基于子集的算法认为这条语句的效果是 \verb|q| 可能指向的变量的集合是 \verb|p| 所可能指向的变量的集合的子集。而基于合一的算法认为此条语句的效果是 \verb|q| 可能指向的变量的集合是与 \verb|p| 所可能指向的变量的集合是相等的。因此指针分析是基于子集还是基于合一的属性也被叫做“赋值方向性”。
+
+\section{上下文敏感性}
+上下文敏感性是静态程序分析中广泛存在的概念，其指的是在进行过程间程序分析（ inter-procedural program analysis ）时，分析算法考虑的被分析程序中的控制流路径是否都是满足正确的调用－返回匹配关系的。比如在图\ref{fig:wrongPath}中，有两处不同的对函数 \verb|f| 的调用。上下文敏感分析算法所考虑的程序执行路径只包含那些正确的调用－返回路径，比如从A点调用f则从f返回时总是回到A点。而与此相对的上下文不敏感分析算法则允许不正确的调用－返回路径（ unrealizable path ），比如A点与B点都调用f，分析算法却认为存在一条路径是从A到f再返回B，比如图\ref{fig:wrongPath}被标红的一条路径。
+
+上下文不敏感数据流分析算法拥有更简单的实现方式，只需将所有函数的控制流图合并为一个图，然后在函数调用语句与被调用函数入口之间添加边，以及函数返回语句与本函数所有的调用者之间添加边，得到一个超级控制流图 （ super CFG ），然后在 super CFG上进行普通的数据流分析即可。
+
+上下文敏感分析算法则需要更复杂的实现方式。最简单的实现方法是“函数克隆”的方法，即对于所有的函数调用语句，都把被调用函数的控制流图复制一份替代这条函数调用语句。但因为被调用的函数也可能会调用其他函数，甚至还会有递归函数调用，所以克隆被调用者时，对于被调用者内的调用语句，不能无限制地进行递归的克隆，而必须限制克隆的深度，克隆的深度达到一定的界限时，则退回到上下文不敏感的方法，所以函数克隆的方法不是完全上下文敏感的，只是部分上下文敏感的。
+
+上下文敏感分析还有更有效的实现方式。包括\textbf{函数归纳方法}（ summary-based method ）\supercite{summary} 以及\textbf{CFL可达性方法} （ context-free-language reachability method ） \supercite{Reps1998}这两种通用的实现方法。函数归纳方法的直观思路是对于每个函数计算一个“归纳”，能代表整个执行整个函数的效果，而对于调用这个函数的调用语句的效果则是“应用”这个归纳。因为递归调用的存在，“归纳”的计算可能需要是迭代计算的。而CFL可达性方法的做法则是首先将程序分析问题规约为另一个图中的可达性问题（ 从一个顶点能否通过边到达另一个顶点 ），而正确的调用－返回匹配关系的要求则被归纳为在这个图中的边上添加了一些标记，并且增加要求为图中的CFL可达性问题，即是问“从一个顶点能否通过边到达另一个顶点，且路径上的标记形成的字符串属于某个上下文无关文法”。
+
+CFL可达性方法适用于满足单调、可分配性质的数据流分析问题，但指针分析往往不完全具有这样的性质，故在作者所知范围内，还没有看到用CFL可达性方法实现上下文敏感指针分析的方法。函数归纳方法则可以被扩展到更广泛的情况，因此在上下文敏感指针分析中得到广泛的应用，如：\cite{cs-clone...}。
+
+DSA也通过函数归纳法支持上下文敏感性。DSA出于算法效率考虑，对于被分析程序函数调用图中处于同一个强连通分量的函数（直接或间接地递归调用的函数）放弃他们之间的上下文敏感性。所以DSA的算法思路是先在函数强连通分量内进行局部的流不敏感的基于合一的指针分析 （ 类似于 Steensgaard 算法 ），把结果当做此函数强连通分量的归纳。然后对函数强连通分量的无环调用图按照后序遍历的次序将被调用者（ callee ） 的归纳应用到调用者 （ caller ）。 
+
+\begin{figure}
+	\centering
+	
+	
+	\begin{tikzpicture}
+	
+	\node[main node] (b1) {f() entry};
+	\node[main node, below=of b1] (b2) {...};
+	\node[main node, below=of b2] (b3) {ret};
+	\path (b1) edge[->, red] (b2)
+	(b2) edge[->,red] (b3);
+	
+	\node[main node, left=of b2, xshift=-1cm] (a1) {call f()};
+	\node[above=of a1] (a2) {};
+	\node[below=of a1] (a3) {};
+	\graph{
+		(a2)->(a1)->(a3);
+		(a1)->[red](b1);
+		(b3)->(a1);
+	};
+	
+	
+	\node[main node, right=of b2, xshift=1cm] (c1) {call f()};
+	\node[above=of c1] (c2) {};
+	\node[below=of c1] (c3) {};
+	\graph{
+		(c2)->(c1)->(c3);
+		(c1)->(b1);
+		(b3)->[red](c1);
+	};
+	
+	\end{tikzpicture}
+	
+	\caption{错误的调用－返回匹配路径。上下文不敏感算法允许这样的路径存在。}
+	\label{fig:wrongPath}
+\end{figure}
+
+
+\section{堆的建模方式}
+指针分析精确性的另一个维度是算法如何对堆上的对象进行处理。最简单且被广泛使用的做法是把一条堆分配语句当作一个堆资源，而此条语句被多次执行都被当作返回的是同一个资源，这样的近似方法被称作\textbf{一次性分配抽象}（ one-time allocation abstraction） 或 \textbf{按分配位置抽象方法} （ allocation site abstraction method)。一次性抽象方法对指针分析准确率可能造成较大的影响，按照实践经验，现实程序可能会尽量避免直接使用堆分配函数，而使用被包装过分配版本。比如来自SPEC2000程序集中的 \verb|gcc| 编译器源代码定义了图\ref{code:gcc}中的辅助函数，然后整个项目的其他位置没有再对 \verb|malloc| 的调用，而全部调用 \verb|xmalloc| 。如果使用一次性抽象，则指针分析会认为整个程序中只有一个堆上的对象，对分析精度造成了很大的影响。
+
+\begin{figure}[htbp]
+\begin{CVerbatim}
+	/* Same as `malloc' but report error if no memory available.  */
+	
+	char *
+	xmalloc (size)
+	unsigned size;
+	{
+		register char *value = (char *) malloc ((size\_t)size);
+		if (value == 0)
+		fatal ("virtual memory exhausted");
+		return value;
+	}
+\end{CVerbatim}	
+\caption{ gcc 中的内存分配辅助函数}
+\label{code:gcc}
+\end{figure}
+
+% TODO: revise
+Nystrom等人\supercite{nystrom2004importance}首先指出了需要对同一条分配语句在不同情况下的执行的返回结果进行区分的重要性，他们验证了如果能把分配语句执行时的函数调用上下文进行区分 （ Nystrom等人称为 heap-specialization ），那么可以显著改善指针分析结果。DSA则是第一个实现高效的“无限制”深度 heap-specialization 的分析算法。所谓“无限制”深度指的在放弃函数调用强连通分量内的上下文敏感性的条件下，一个分配语句被执行时的整个调用上下文都会被区分。
+
+\section{流敏感性}
+流敏感性指的是分析算法是否对被不同程序点给出不一样的分析结果。流不敏感分析算法只给出一个全局的分析结果，该结果对于任意程序点都是安全（ sound ）的。流敏感分析算法则对不同的程序点给出不同的分析结果。流敏感分析的标准做法及理论框架是单调数据流分析框架，在此框架内分析过程相当于在忽略分支条件下不断模拟执行程序。而只要待分析内容是一个有限半格的元素，那么这样的模拟执行总是收敛。流不敏感分析算法的通用做法则是遍历待分析程序中的所有语句（可以按照任何次序），对每条语句按照其语义生成一条关于待分析内容的约束，然后根据所有的约束求解出对于任何一个程序点都安全的分析结果。
+
+显然流敏感分析相比于流不敏感分析能得到精确得多的结果，但其所需的计算量也远远高于流不敏感分析。所以早期流敏感的指针分析\supercite{earlyFS...}没有在实践中得到大规模的使用。Hardekopf等人在2009年\supercite{Hardekopf2009}及2011年\supercite{hardekopf2011flow}的研究工作首次实现了高效的流敏感分析算法，其性能达到了可分析百万行代码的级别。他们的研究中提高流敏感分析性能的关键方法是进行“稀疏分析”\supercite{choi1991automatic}，即首先把程序转换为\textbf{完全静态单赋值形式}，然后使得每个程序点只储存记录本条语句可能修改的指针的指向集合，并且数据流按照静态单赋值形式中指针的“定义-使用关系”（def-use relation）进行传播。
+
+Hardekopf等人在2011年\supercite{hardekopf2011flow}的较新方法是“分阶段流敏感指针分析” （Staged Flow-sensitive Analysis, SFS）。 此算法的流程是首先进行任意一个流不敏感的指针分析，根据此分析的结果可以知道每条语句可能修改哪些指针的取值，根据这样的信息我们可以将代码转换为静态单赋值形式\supercite{Cytron:1991}，有了静态单赋值形式的程序后，我们可以知道每条语句使用的变量的上一次修改在什么位置，所以可以每条语句只保存它可能会修改的指针的指向集合，然后直接沿着“定义－使用边”进行数据流传播。
+
+\section{域敏感性}
+域敏感性是关于指针分析如何处理“结构体（struct）／记录（record）／类（class）”这样用户自定义聚合类型的性质。域不敏感指的是分析算法不区分结构体的各个域（field），而只分析一个结构体对象从它的任意一个域可能指向哪些对象。而域敏感分析则可以区分结构体中不同的域分别可能指向哪些对象。
+
+显然对于C++，Java等大量使用聚合数据类型的面向对象编程语言域敏感性尤其重要。但Reps\supercite{repsUndecidable}证明了在进行过程间分析时，同时是完全的上下文敏感与完全的域敏感分析问题是不可判定的。于是对指针分析算法的一个重要问题是如何在上下文敏感性与域敏感性平衡。研究\supercite{fieldSensitivity}的实验表明对于C语言等面向过程的编程语言中，上下文敏感性对分析精度的影响较大，而对于Java等面向对象编程语言中，域敏感性对分析精度的影响较大。
+
+\section{相关工作总结}
+
+图\ref{tab:algs}分类汇总了各类精确度的指针分析算法。可以看出，对指针分析的研究已经从上世纪90年代的追求实践中可用的高效算法转变为近年来在高效的前提下提升精度。而我们的算法则是已知工作中精度最高的。
+
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\newcommand{\cisunif}{
+	\makecell{
+		\tabitem Weihl 1980\supercite{weihl1980interprocedural} 
+		\\第一篇指针分析的研究工作\\ \\
+		\tabitem Steensgaard 1996\supercite{Steensgaard1996} \\ 第一个高效的分析算法
+	}
+}
+
+\newcommand{\csunif}{
+	\makecell{
+		\tabitem Lattner 2007\supercite{Lattner2007} 
+		\\ 且是域敏感、堆上下文敏感的
+	}
+}
+
+\newcommand{\cisinc}{
+	\makecell{
+		\tabitem Andersen 1994\supercite{andersen1994program}
+		\\ \\
+		\tabitem Hardekopf 2007\supercite{Hardekopf2007}
+		\\ 进行动态SCC检测优化
+	}
+}
+
+\newcommand{\csinc}{
+	\makecell{
+		\tabitem Whaley 2004\supercite{Whaley2004} \\ \\
+		\tabitem Nystrom 2004\supercite{Nystrom2004} \\ 且是堆上下文敏感的 \\ \\
+		\tabitem Sui 2014 \supercite{sui2014making}	
+	}
+}
+
+\newcommand{\cisfs}{
+	\makecell{
+		\tabitem Choi 1993 \supercite{Choi:1993} \\ \\
+		\tabitem Hardekopf 2009\supercite{Hardekopf2009} \\ 2011\supercite{Hardekopf2011} \\
+		基于子集
+	}
+}
+
+\newcommand{\csfs}{
+	\makecell{
+		\tabitem Zhu 2005 \supercite{Zhu:2005} \\ \\
+		\tabitem Kahlon 2008 \supercite{Kahlon:2008} \\ \\
+		\tabitem \textbf{本文的算法} \\ 且是堆上下文敏感的
+	}
+}
+
+\newcolumntype{D}{ >{\centering\arraybackslash} m{1cm} }
+\newcolumntype{C}{ >{\centering\arraybackslash} m{3cm} }
+\begin{figure}[htbp]
+	\centering
+	\begin{tabular}{D|c|c|c}
+		 & \textbf{基于合一} & \textbf{基于子集} & \textbf{流敏感} \\
+		\hline 
+		\rotatebox{90}{\quad \textbf{上下文不敏感} \quad} & \cisunif & \cisinc & \cisfs \\
+		\hline 
+		\rotatebox{90}{\quad \textbf{上下文敏感} \quad} & \csunif & \csinc & \csfs \\
+		\hline 
+	\end{tabular}
+	\caption{指针分析算法汇总}
+	\label{tab:algs}
+\end{figure}
+% vim:ts=4:sw=4
